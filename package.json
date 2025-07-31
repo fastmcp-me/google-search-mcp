@@ -1,0 +1,51 @@
+{
+  "name": "@kyaniiii/google-search-mcp",
+  "version": "1.1.1",
+  "description": "MCP server for Google Search with API key rotation",
+  "type": "module",
+  "bin": {
+    "google-search-mcp": "build/index.js",
+    "google-search-setup": "setup.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "build",
+    "setup.js",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc && node -e \"require('fs').chmodSync('build/index.js', '755')\"",
+    "dev": "tsc --watch", 
+    "start": "node build/index.js",
+    "setup": "node setup.js",
+    "clean": "node -e \"const fs=require('fs'),path=require('path'),os=require('os');const configPath=path.join(os.homedir(),'.google-search-mcp.json');try{fs.unlinkSync(configPath);console.log('🗑️ Configuration file deleted: '+configPath);}catch(e){console.log('ℹ️ No config file found to delete');}\""
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.16.0",
+    "googleapis": "^144.0.0",
+    "dotenv": "^16.4.5",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.24",
+    "typescript": "^5.3.3"
+  },
+  "keywords": [
+    "mcp",
+    "google-search",
+    "api-rotation",
+    "quota-management"
+  ],
+  "author": "kyaniiii",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Fabien-desablens/google-search-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Fabien-desablens/google-search-mcp/issues"
+  },
+  "homepage": "https://github.com/Fabien-desablens/google-search-mcp#readme"
+}
