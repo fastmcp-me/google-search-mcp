@@ -1,11 +1,17 @@
 #!/usr/bin/env node
 
+import { spawn } from 'child_process';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { server } from './server.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // Check for setup argument
 if (process.argv.includes('setup')) {
   // Run setup script
-  const { spawn } = require('child_process');
-  const path = require('path');
-  
   const setupScript = path.join(__dirname, '..', 'setup.js');
   const setupProcess = spawn('node', [setupScript], { 
     stdio: 'inherit',
@@ -17,9 +23,6 @@ if (process.argv.includes('setup')) {
   });
 } else {
   // Run MCP server
-  const { StdioServerTransport } = require('@modelcontextprotocol/sdk/server/stdio.js');
-  const { server } = require('./server.js');
-
   const transport = new StdioServerTransport();
   server.connect(transport);
 

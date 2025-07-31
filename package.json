@@ -1,6 +1,6 @@
 {
   "name": "@kyaniiii/google-search-mcp",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "MCP server for Google Search with API key rotation",
   "type": "module",
   "bin": {
